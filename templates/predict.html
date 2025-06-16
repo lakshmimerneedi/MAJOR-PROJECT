@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Crop Predictor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: linear-gradient(145deg, #e6f0db, #c1d8ac);
+  min-height: 100vh;
+padding-top: 5px;
+padding-bottom: 50px;
+}
+
+/* Navigation */
+ nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: white;
+  color: rgb(8, 8, 8);
+  padding: 12px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* optional for depth effect */
+}
+
+  nav .logo {
+    font-size: 1.5rem;
+  }
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 29px;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li a {
+  color: rgb(26, 25, 25);
+  font-weight: 700;
+  font-size: 17px;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+nav ul li a::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: #e6f4dd;
+  z-index: -1;
+  transition: transform 0.3s ease;
+  transform: scale(0.8);
+  opacity: 0;
+  border-radius: 6px;
+}
+
+nav ul li a:hover {
+  color: #3f6e28;
+}
+
+nav ul li a:hover::before {
+  transform: scale(1);
+  opacity: 1;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  width: 95%;
+  max-width: 1100px;
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  margin: 100px auto 0 auto; /* Push down below navbar */
+}
+
+   .image-side {
+  flex: 1;
+  min-width: 300px;
+  background: url('static/pre.jpeg') no-repeat center center/cover;
+  min-height: 100%;
+}
+
+
+    .form-side {
+      flex: 1;
+      min-width: 300px;
+      padding: 40px 35px;
+      background: rgba(255, 255, 255, 0.95);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .form-side h1 {
+      color: #2f4f1f;
+      font-weight: 600;
+      font-size: 2.2rem;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .input-group {
+      margin-bottom: 22px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #4a6a25;
+      font-weight: 600;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 14px 16px;
+      font-size: 1rem;
+      border: none;
+      border-bottom: 2px solid #a9c284;
+      background-color: #f9fdf5;
+      border-radius: 6px 6px 0 0;
+      transition: border-color 0.3s ease;
+      font-weight: 500;
+      color: #3d521b;
+    }
+
+    input[type="text"]::placeholder {
+      color: #b8c3a6;
+      font-style: italic;
+    }
+
+    input[type="text"]:focus {
+      border-bottom-color: #3e7d12;
+      background-color: #e8f0d7;
+      box-shadow: 0 2px 5px rgba(62, 125, 18, 0.2);
+    }
+
+    button.submit-btn {
+      padding: 16px 0;
+      background: linear-gradient(135deg, #4b7b10, #7abf2a);
+      border: none;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: #f0f9e8;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(75, 123, 16, 0.5);
+      transition: background 0.35s ease, transform 0.2s ease;
+    }
+
+    button.submit-btn:hover {
+      background: linear-gradient(135deg, #3e670d, #699b21);
+      transform: scale(1.05);
+    }
+
+    .footer-note {
+      text-align: center;
+      margin-top: 18px;
+      font-size: 0.9rem;
+      color: #6e8556;
+    }
+
+    @media (max-width: 768px) {
+      .wrapper {
+        flex-direction: column;
+      }
+
+      .image-side {
+        height: 220px;
+      }
+
+      .form-side {
+        padding: 30px 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+<!-- Navbar -->
+  <header>
+<nav>
+  <div class="logo" style="display: flex; align-items: center; gap: 10px;">
+    <img src="https://t4.ftcdn.net/jpg/01/07/44/57/360_F_107445710_dXV8BQNOVDFHndZapai0ILx3JwfdkJ4E.jpg" 
+         alt="AgriGuru Logo" 
+         style="width: 40px; height: 40px; object-fit: contain;">
+    <span>AgriGuru</span>
+  </div>
+
+  <ul>
+    <li><a href="/dashboard">Home</a></li>
+    <li><a href="/predict">Predict</a></li>
+    <li><a href="/result">Result</a></li>
+    <li><a href="/history">History</a></li>
+    <li><a href="/blogs">Blogs</a></li>
+    <li><a href="/logout">Logout</a></li>
+  </ul>
+</nav>
+  </header>
+  <div class="wrapper">      
+    <div class="image-side"></div>
+
+    <div class="form-side">
+      <h1>🌿 Crop Predictor</h1>
+      <form action="/predict" method="POST">
+        <div class="input-group">
+          <label for="N">Nitrogen (N)</label>
+          <input type="text" id="N" name="N" placeholder="e.g., 90" required />
+        </div>
+
+        <div class="input-group">
+          <label for="P">Phosphorus (P)</label>
+          <input type="text" id="P" name="P" placeholder="e.g., 40" required />
+        </div>
+
+        <div class="input-group">
+          <label for="K">Potassium (K)</label>
+          <input type="text" id="K" name="K" placeholder="e.g., 40" required />
+        </div>
+
+        <div class="input-group">
+          <label for="temperature">Temperature (°C)</label>
+          <input type="text" id="temperature" name="temperature" placeholder="e.g., 25" required />
+        </div>
+
+        <div class="input-group">
+          <label for="humidity">Humidity (%)</label>
+          <input type="text" id="humidity" name="humidity" placeholder="e.g., 80" required />
+        </div>
+
+        <div class="input-group">
+          <label for="ph">Soil pH</label>
+          <input type="text" id="ph" name="ph" placeholder="e.g., 6.5" required />
+        </div>
+
+        <div class="input-group">
+          <label for="rainfall">Rainfall (mm)</label>
+          <input type="text" id="rainfall" name="rainfall" placeholder="e.g., 200" required />
+        </div>
+
+        <button type="submit" class="submit-btn">🌱 Predict Crop</button>
+      </form>
+      <p class="footer-note">Powered by smart agri-tech solutions</p>
+    </div>
+  </div>
+</body>
+</html>

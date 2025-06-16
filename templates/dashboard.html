@@ -1,0 +1,1497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Orbitron:wght@500&display=swap" rel="stylesheet">
+<title>AgriGuru - Home</title>
+<style>
+  /* Reset & base */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0; padding-top: 70px;
+    background: #f9fef9;
+    color: #333;
+  }
+  a {
+    text-decoration: none;
+    color: #2a7a2a;
+  }
+  a:hover {
+    color: #1d4d1d;
+  }
+  h1,h2,h3 {
+    margin: 0 0 10px 0;
+  }
+  p {
+    line-height: 1.5;
+  }
+
+  /* Navigation */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: white;
+  color: rgb(8, 8, 8);
+  padding: 12px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* optional for depth effect */
+}
+
+  nav .logo {
+    font-size: 1.5rem;
+  }
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 29px;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li a {
+  color: rgb(26, 25, 25);
+  font-weight: 700;
+  font-size: 17px;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+nav ul li a::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: #e6f4dd;
+  z-index: -1;
+  transition: transform 0.3s ease;
+  transform: scale(0.8);
+  opacity: 0;
+  border-radius: 6px;
+}
+
+nav ul li a:hover {
+  color: #3f6e28;
+}
+
+nav ul li a:hover::before {
+  transform: scale(1);
+  opacity: 1;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+  /* Hero */
+  .hero {
+    background: linear-gradient(135deg, #a4d37c, #175b19);
+    color: white;
+    padding: 60px 24px 40px;
+    text-align: center;
+    margin-top: 10px;
+  }
+  .hero h1 {
+    font-size: 2.8rem;
+    margin-bottom: 16px;
+    font-weight: 900;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+  }
+  .hero p {
+    font-size: 1.2rem;
+    margin-bottom: 32px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .hero-buttons a.btn {
+    background: white;
+    color: #4caf50;
+    padding: 14px 28px;
+    border-radius: 30px;
+    font-weight: 700;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: background 0.3s, color 0.3s;
+  }
+  .hero-buttons a.btn:hover {
+    background: #3e8e41;
+    color: white;
+  }
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #2e7d32;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.logo-icon {
+  height: 40px;
+  width: 40px;
+  margin-right: 10px;
+  animation: logoPop 1s ease;
+}
+
+@keyframes logoPop {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+  /* Stats cards */
+ 
+  .stats-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+    padding: 50px 5%;
+    background: linear-gradient(to right, #eef2f3, #ffffff);
+  }
+
+  .card {
+    position: relative;
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0,0,0,0.08);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    z-index: 1;
+  }
+
+  .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 0 25px rgba(0, 128, 0, 0.25);
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, #00c853, #316d0c, #255f3d);
+    z-index: -1;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+
+  .card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .card i {
+    font-size: 40px;
+    color: #00c853;
+    margin-bottom: 15px;
+    transition: color 0.3s ease;
+  }
+
+  .card:hover i {
+    color: #fff;
+  }
+
+  .card h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+    position: relative;
+  }
+
+  .card h3::after {
+    content: '';
+    width: 40px;
+    height: 3px;
+    background: #00c853;
+    display: block;
+    margin: 8px auto 0;
+    border-radius: 2px;
+    transition: width 0.3s ease;
+  }
+
+  .card:hover h3::after {
+    width: 60px;
+  }
+
+  .counter, .card span {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 32px;
+    font-weight: 600;
+    color: #222;
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+  }
+
+  .card:hover .counter,
+  .card:hover span {
+    color: #fff;
+  }
+
+  .card p {
+    font-size: 14px;
+    color: #666;
+    transition: color 0.3s ease;
+  }
+
+  .card:hover p {
+    color: #e0e0e0;
+  }
+  /* Recent Recommendations Carousel */
+ .recent-recommendations {
+  background: linear-gradient(to right, #92c17b, #ffffff);
+  padding: 3rem 1rem;
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.recent-recommendations h2 {
+  font-size: 2.4rem;
+  background: linear-gradient(to right, #2c7a7b, #38a169);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  margin-bottom: 2rem;
+  position: relative;
+  display: inline-block;
+  animation: highlight-title 2s ease-in-out;
+}
+
+.card-container {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  padding: 0 2rem;
+}
+.recent-recommendations h2::after{
+  content: '';
+    width: 100px;
+    height: 4px;
+    background: #53b97c;
+    display: block;
+    margin: 8px auto 0;
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+.crop-card {
+  background: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  animation: fadeInUp 1s ease forwards;
+  position: relative;
+}
+
+.crop-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+.crop-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 1rem;
+  text-align: left;
+}
+
+.card-content h3 {
+  color: #2f855a;
+  font-size: 1.4rem;
+  margin: 0.3rem 0;
+  position: relative;
+}
+
+.card-content h3::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 3px;
+  background: #68d391;
+  margin-top: 0.4rem;
+  border-radius: 2px;
+  animation: underline 1.2s ease-in-out;
+}
+
+.card-content p {
+  font-size: 0.95rem;
+  color: #4a5568;
+  margin: 0.5rem 0;
+}
+
+.card-content small {
+  color: #718096;
+  font-size: 0.8rem;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes highlight-title {
+  0% { opacity: 0; transform: translateY(-10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes underline {
+  0% { width: 0; opacity: 0; }
+  100% { width: 40px; opacity: 1; }
+}
+.crop-card {
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+.crop-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  border: 2px solid transparent;
+  z-index: 1;
+  pointer-events: none;
+}
+.market-section h2 {
+  font-size: 2.6rem;
+  font-weight: 700;
+  text-align: center;
+  color: #226c3f;
+  padding: 20px 0;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  position: relative;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.market-section h2::after {
+  content: '';
+  display: block;
+  width: 120px;
+  height: 4px;
+  background-color: #43a047;
+  margin: 12px auto 0;
+  border-radius: 2px;
+}
+
+.crop-card::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  border: 2px solid #318d51;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  animation: trace-line 2s linear infinite;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  padding: 2px;
+  box-sizing: border-box;
+}
+@keyframes trace-line {
+  0% {
+    clip-path: inset(0 100% 100% 0);
+  }
+  25% {
+    clip-path: inset(0 0 100% 0);
+  }
+  50% {
+    clip-path: inset(0 0 0 0);
+  }
+  75% {
+    clip-path: inset(100% 0 0 0);
+  }
+  100% {
+    clip-path: inset(100% 100% 0 0);
+  }
+}
+
+  /* Market Prices */
+ .market-section {
+  padding: 20px;
+  background-color: #f5f5f5;
+  text-align: center;
+  height: 500px;
+}
+
+.market-section h2 {
+  font-size: 2rem;
+  margin-bottom: 0px;
+  color: #333;
+}
+
+.market-scroll-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.market-grid {
+  display: flex;
+  gap: 25px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 20px 0;
+}
+
+.market-grid::-webkit-scrollbar {
+  display: none;
+}
+
+.market-card {
+  position: relative;
+  width: 220px;
+  height: 300px;
+  border-radius: 15px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.market-card:hover {
+  transform: scale(1.02);
+}
+
+.market-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.card-contents {
+  padding: 15px;
+  text-align: center;
+  transition: opacity 0.3s ease;
+}
+
+.card-contents h3 {
+  font-size: 1.2rem;
+  color: #222;
+  margin: 5px 0;
+}
+
+.card-contents .price {
+  font-size: 1rem;
+  color: #28a745;
+}
+
+.hover-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.market-card:hover .hover-overlay {
+  opacity: 1;
+}
+
+.market-card:hover .card-contents {
+  opacity: 0;
+}
+
+.hover-overlay h3 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+
+.hover-overlay .price {
+  font-size: 1.5rem;
+  color: #00ff90;
+}
+
+.hover-overlay .price.down {
+  color: #f3473e;
+}
+
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #333;
+  color: #fff;
+  border: none;
+  font-size: 2rem;
+  padding: 5px 12px;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 10;
+  transition: background 0.3s ease;
+}
+
+.nav-btn:hover {
+  background-color: #555;
+}
+
+.nav-left {
+  left: 0;
+}
+
+.nav-right {
+  right: 0;
+}
+ /* Videos */
+.animated-section {
+  max-width: 1500px;
+  height: 380px;
+  margin: 60px auto;
+  padding: 20px;
+background: linear-gradient(to right, #92c17b, #f5fbf7);
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  animation: fadeInUp 1.2s ease-in-out;
+}
+
+.video-heading {
+  text-align: center;
+  font-size: 2.1rem;
+  color: #1e7f4e;
+    padding: 1rem;
+  margin-bottom: 30px;
+  font-weight: 800;
+  position: relative;
+}
+
+.video-heading::after {
+  content: '';
+  display: block;
+  width: 100px;
+  height: 4px;
+  background-color: #43a047;
+  margin: 12px auto 0;
+  border-radius: 2px;
+}
+
+.video-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.video-container iframe {
+  width: 350px;
+  height: 200px;
+  border-radius: 16px;
+  transition: transform 0.4s ease, box-shadow 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.video-container iframe:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(0, 100, 0, 0.3);
+}
+
+/* Entrance animation */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive for mobile */
+@media (max-width: 768px) {
+  .video-container iframe {
+    width: 100%;
+    height: 200px;
+  }
+}
+
+/* Optional: If your layout wraps content inside a main or section tag */
+main, section {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+/* Specifically target and reduce spacing before the .videos section */
+.videos, .animated-section {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+.blog-section {
+  background: linear-gradient(to bottom right, #92c17b, #ffffff);
+  padding: 20px 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 18px rgba(0, 128, 0, 0.15);
+  margin: 20px auto;
+  max-width: 1200px;
+  height: 600px;
+}
+
+.section-title {
+     text-align: center;
+    font-size: 2.1rem;
+    color: #1e7f4e;
+    padding: 1rem;
+    margin-bottom: 16px;
+    padding-bottom: 4px;
+    font-weight: 800;
+    position: relative;
+}
+.section-title::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 4px;
+    background-color: #43a047;
+    margin: 12px auto 0;
+    border-radius: 2px;
+}
+.blog-container {
+  display: flex;
+  gap: 30px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.featured-blog {
+  flex: 1;
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 25px;
+  min-width: 320px;
+  max-width: 650px;
+  box-shadow: 0 6px 20px rgba(0, 128, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: auto;
+}
+
+.featured-blog img {
+  width: 100%;
+  border-radius: 14px;
+  object-fit: cover;
+  max-height: 250px;
+}
+
+.blog-content h3 {
+  font-size: 22px;
+  color: #2e7d32;
+  font-weight: bold;
+}
+
+.blog-content p {
+  color: #555;
+  line-height: 1.6;
+}
+
+.read-more {
+  background-color: #43a047;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.read-more:hover {
+  background-color: #2e7d32;
+}
+
+.side-blogs {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-height: 400px;
+  overflow-y: auto;
+  min-width: 280px;
+}
+
+.blog-card {
+  display: flex;
+  gap: 12px;
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 3px 10px rgba(0, 128, 0, 0.08);
+  padding: 10px 14px;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-4px);
+}
+
+.blog-card img {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.blog-card h4 {
+  font-size: 16px;
+  color: #2e7d32;
+  font-weight: 600;
+}
+.view-all {
+    margin: -60px 100px 0 auto; /* less top margin */
+    display: block;
+    padding: 10px 22px;
+    background-color: hsl(123, 41%, 45%);
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    transition: background 0.3s;
+}
+
+
+.view-all:hover {
+  background-color: #2e7d32;
+}
+
+/* Fade-in animation */
+.fade-in {
+  animation: fadeIn 1s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Subscribe Section Styling */
+.subscribe {
+  background-color: hsl(123deg 48.36% 37.61%);
+  color: white;
+  padding: 50px 20px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.subscribe-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.subscribe h2 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.subscribe p {
+  font-size: 16px;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.subscribe form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+}
+
+.form-group {
+  display: flex;
+  gap: 20px;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-wrapper .icon {
+  position: absolute;
+  left: 10px;
+  font-size: 16px;
+  color: #d6b780;
+}
+
+.input-wrapper input {
+  padding: 10px 10px 10px 35px;
+  font-size: 14px;
+  color: #fff;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #fff;
+  width: 250px;
+  outline: none;
+}
+
+.input-wrapper input::placeholder {
+  color: #d6b780;
+}
+
+.input-wrapper input:focus {
+  border-color: #d6b780;
+}
+
+.submit-button {
+  background-color: white;
+  color: #4caf50;
+  padding: 10px 20px;
+  border: none;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.submit-button:hover {
+  background: #6fc672;
+    color: white;
+}
+
+/* Footer Styles */
+.footer {
+  background-color: #f9f9f9;
+  color: #0c0c0c;
+  text-align: center;
+  padding: 40px 20px;
+  font-family: Arial, sans-serif;
+}
+
+.footer-brand h2 {
+  font-size: 24px;
+  margin: 0 0 20px 0;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+}
+
+.footer-social {
+  margin-bottom: 20px;
+}
+
+.footer-social a {
+  margin: 0 15px;
+  display: inline-block;
+  transition: transform 0.3s;
+}
+
+.footer-social img {
+  width: 40px;
+  height: 40px;
+  transition: transform 0.3s;
+}
+
+.footer-social img:hover {
+  transform: scale(1.2);
+}
+
+.footer-copyright {
+  font-size: 16px;
+}
+
+  /* Responsive */
+  @media (max-width: 960px) {
+    .hero h1 {
+      font-size: 2rem;
+    }
+    .hero-buttons a.btn {
+      padding: 12px 22px;
+      font-size: 0.9rem;
+    }
+    .stats-cards {
+      gap: 14px;
+    }
+    .stats-cards .card {
+      flex: 1 1 140px;
+      font-size: 1rem;
+    }
+    .carousel-item {
+      flex: 0 0 240px;
+      padding: 18px 14px;
+    }
+    .videos iframe {
+      width: 280px;
+      height: 160px;
+    }
+  @media (max-width: 600px) {
+    nav ul {
+      display: none; /* hamburger menu can be added later */
+    }
+    .hero {
+      padding: 40px 18px 30px;
+    }
+    .hero-buttons {
+      flex-direction: column;
+      gap: 12px;
+    }
+    .hero-buttons a.btn {
+      width: 100%;
+      text-align: center;
+    }
+    .stats-cards {
+      flex-direction: column;
+      gap: 20px;
+      padding: 20px 12px 40px;
+    }
+    .recent-recommendations {
+      padding: 0 18px;
+    }
+    .market-prices {
+      max-width: 100%;
+      padding: 20px 18px;
+    }
+    .videos {
+      flex-direction: column;
+      align-items: center;
+    }
+    .videos iframe {
+      width: 100%;
+      max-width: 320px;
+      height: 180px;
+      margin: 8px 0;
+    }
+    .gallery {
+      padding: 0 18px;
+    }
+    .blogs {
+      padding: 0 18px;
+    }
+    .subscribe {
+      max-width: 100%;
+      padding: 20px 18px;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="logo" style="display: flex; align-items: center; gap: 10px;">
+    <img src="https://t4.ftcdn.net/jpg/01/07/44/57/360_F_107445710_dXV8BQNOVDFHndZapai0ILx3JwfdkJ4E.jpg" 
+         alt="AgriGuru Logo" 
+         style="width: 40px; height: 40px; object-fit: contain;">
+    <span>AgriGuru</span>
+  </div>
+
+  <ul>
+    <li><a href="/dashboard">Home</a></li>
+    <li><a href="/predict">Predict</a></li>
+    <li><a href="/result">Result</a></li>
+    <li><a href="/history">History</a></li>
+    <li><a href="/blogs">Blogs</a></li>
+    <li><a href="/logout">Logout</a></li>
+  </ul>
+</nav>
+<section class="hero">
+  <h1 class="fade-in-up">
+    Welcome to <span class="brand">AgriGuru</span>
+  </h1>
+
+  <p class="fade-in-delay">
+    Empowering smart farming with personalized crop recommendations, expert insights & real-time trends.
+  </p>
+
+  <div class="hero-buttons fade-in-late">
+    <a href="/predict" class="btn">Start Predicting</a>
+  </div>
+</section>
+<section class="stats-cards">
+  <div class="card">
+    <i class="fas fa-user-check"></i>
+    <h3>Farmers Registered</h3>
+    <span class="counter" data-target="10234">0</span>
+    <p>Empowering communities across the country.</p>
+  </div>
+
+  <div class="card">
+    <i class="fas fa-seedling"></i>
+    <h3>Crops Recommended</h3>
+    <span class="counter" data-target="3876">0</span>
+    <p>AI-based crop suggestions for better yield.</p>
+  </div>
+
+  <div class="card">
+    <i class="fas fa-chart-line"></i>
+    <h3>Active Predictions</h3>
+    <span class="counter" data-target="189">0</span>
+    <p>Live seasonal forecasting and monitoring.</p>
+  </div>
+
+  <div class="card">
+    <i class="fas fa-leaf"></i>
+    <h3>Market Price Trends</h3>
+    <span>↑ 12.3%</span>
+    <p>Accurate & updated agri-market insights.</p>
+  </div>
+</section>
+
+<section class="recent-recommendations">
+  <h2><span class="line"></span>Recent Crop Recommendations</h2>
+  <div class="card-container">
+
+    <div class="crop-card">
+      <img src="{{ url_for('static', filename='rice.jpg') }}" alt="Rice">
+      <div class="card-content">
+        <h3>Rice</h3>
+        <p>Ideal for monsoon season with abundant water supply.</p>
+        <small>May 25, 2025</small>
+      </div>
+    </div>
+
+    <div class="crop-card">
+      <img src="{{ url_for('static', filename='sugarcane.jpeg') }}" alt="Sugarcane">
+      <div class="card-content">
+        <h3>Sugarcane</h3>
+        <p>Recommended for tropical soil and sunlight conditions.</p>
+        <small>May 22, 2025</small>
+      </div>
+    </div>
+
+    <div class="crop-card">
+      <img src="{{ url_for('static', filename='banana.jpg') }}" alt="Banana">
+      <div class="card-content">
+        <h3>Banana</h3>
+        <p>Grows best in humid, warm weather regions.</p>
+        <small>May 20, 2025</small>
+      </div>
+    </div>
+
+    <div class="crop-card">
+      <img src="{{ url_for('static', filename='wheat.jpg') }}" alt="Wheat">
+      <div class="card-content">
+        <h3>Wheat</h3>
+        <p>Best for upcoming cooler seasons with dry spells.</p>
+        <small>May 18, 2025</small>
+      </div>
+    </div>
+
+  </div>
+</section>
+<section class="market-section">
+  <h2>🌾 Top Crop Market Prices</h2>
+  <div class="market-scroll-wrapper">
+    <button class="nav-btn nav-left" onclick="slideLeft()">❮</button>
+
+    <div class="market-grid" id="marketGrid">
+
+      <div class="market-card">
+        <img src="static/rice1.jpg" alt="Rice" />
+        <div class="card-contents">
+          <h3>Rice</h3>
+          <p class="price">₹23690 / ton</p>
+        </div>
+        <div class="hover-overlay">
+          <h3>Rice</h3>
+          <p class="price">₹23690 / ton ↑</p>
+        </div>
+      </div>
+
+      <div class="market-card">
+        <img src="static/maize.jpeg" alt="Maize" />
+        <div class="card-contents">
+          <h3>Maize</h3>
+          <p class="price">₹22400 / ton</p>
+        </div>
+        <div class="hover-overlay">
+          <h3>Maize</h3>
+          <p class="price">₹22400 / ton ↑</p>
+        </div>
+      </div>
+
+      <div class="market-card">
+        <img src="static/chickpea.jpg" alt="Chickpea" />
+        <div class="card-contents">
+          <h3>Chickpea</h3>
+          <p class="price">₹32000 / ton</p>
+        </div>
+        <div class="hover-overlay">
+          <h3>Chickpea</h3>
+          <p class="price">₹32000 / ton</p>
+        </div>
+      </div>
+
+      <div class="market-card">
+        <img src="static/kidneybeans.jpg" alt="Kidney Beans" />
+        <div class="card-contents">
+          <h3>Kidney Beans</h3>
+          <p class="price">₹35000 / ton</p>
+        </div>
+        <div class="hover-overlay">
+          <h3>Kidney Beans</h3>
+          <p class="price">₹35000 / ton</p>
+        </div>
+      </div>
+
+      <div class="market-card">
+        <img src="static/pigeonpeas.webp" alt="Pigeon Peas" />
+        <div class="card-contents">
+          <h3>Pigeon Peas</h3>
+          <p class="price">₹33000 / ton</p>
+        </div>
+        <div class="hover-overlay">
+          <h3>Pigeon Peas</h3>
+          <p class="price">₹33000 / ton</p>
+        </div>
+      </div>
+
+      <div class="market-card">
+        <img src="static/mungbean.jpg" alt="Mung Bean" />
+        <div class="card-contents">
+          <h3>Mung Bean</h3>
+          <p class="price">₹31000 / ton</p>
+        </div>
+        <div class="hover-overlay">
+          <h3>Mung Bean</h3>
+          <p class="price">₹31000 / ton</p>
+        </div>
+      </div>
+
+      <div class="market-card">
+        <img src="static/blackgram.webp" alt="Black Gram" />
+        <div class="card-contents">
+          <h3>Black Gram</h3>
+          <p class="price">₹30000 / ton</p>
+        </div>
+        <div class="hover-overlay">
+          <h3>Black Gram</h3>
+          <p class="price">₹30000 / ton</p>
+        </div>
+      </div>
+
+      <div class="market-card">
+        <img src="static/lentil.jpg" alt="Lentil" />
+        <div class="card-contents">
+          <h3>Lentil</h3>
+          <p class="price">₹28000 / ton</p>
+        </div>
+        <div class="hover-overlay">
+          <h3>Lentil</h3>
+          <p class="price">₹28000 / ton</p>
+        </div>
+      </div>
+
+      <div class="market-card">
+        <img src="static/pomegranate.avif" alt="Pomegranate" />
+        <div class="card-contents">
+          <h3>Pomegranate</h3>
+          <p class="price">₹75000 / ton</p>
+        </div>
+        <div class="hover-overlay">
+          <h3>Pomegranate</h3>
+          <p class="price">₹75000 / ton ↑</p>
+        </div>
+      </div>
+
+      <div class="market-card">
+        <img src="static/banana1.jpg" alt="Banana" />
+        <div class="card-contents">
+          <h3>Banana</h3>
+          <p class="price">₹15000 / ton</p>
+        </div>
+        <div class="hover-overlay">
+          <h3>Banana</h3>
+          <p class="price">₹15000 / ton ↑</p>
+        </div>
+      </div>
+
+      <div class="market-card">
+        <img src="static/mango.jpeg" alt="Mango" />
+        <div class="card-contents">
+          <h3>Mango</h3>
+          <p class="price">₹4000 / ton</p>
+        </div>
+        <div class="hover-overlay">
+          <h3>Mango</h3>
+          <p class="price down">₹4000 / ton ↓</p>
+        </div>
+      </div>
+
+      <div class="market-card">
+        <img src="static/grapes.jpg" alt="Grapes" />
+        <div class="card-contents">
+          <h3>Grapes</h3>
+          <p class="price">₹40000 / ton</p>
+        </div>
+        <div class="hover-overlay">
+          <h3>Grapes</h3>
+          <p class="price">₹40000 / ton</p>
+        </div>
+      </div>
+
+      <div class="market-card">
+        <img src="static/watermelon.jpg" alt="Watermelon" />
+        <div class="card-contents">
+          <h3>Watermelon</h3>
+          <p class="price">₹22000 / ton</p>
+        </div>
+        <div class="hover-overlay">
+          <h3>Watermelon</h3>
+          <p class="price">₹22000 / ton</p>
+        </div>
+      </div>
+
+      <div class="market-card">
+        <img src="static/coconut.jpg" alt="Coconut" />
+        <div class="card-contents">
+          <h3>Coconut</h3>
+          <p class="price">₹40000 / ton</p>
+        </div>
+        <div class="hover-overlay">
+          <h3>Coconut</h3>
+          <p class="price">₹40000 / ton</p>
+        </div>
+      </div>
+
+    </div> <!-- end of market-grid -->
+
+    <button class="nav-btn nav-right" onclick="slideRight()">❯</button>
+  </div> <!-- end of market-scroll-wrapper -->
+</section>
+
+<section class="videos animated-section">
+  <h2 class="video-heading">📽️ Recommended Farming Videos</h2>
+  <div class="video-container">
+    <iframe 
+      src="https://www.youtube.com/embed/0qIyJYRMn-I" 
+      title="How to Start Integrated Farming?" 
+      allowfullscreen>
+    </iframe>
+
+    <iframe 
+      src="https://www.youtube.com/embed/1ghLS6oZkq4" 
+      title="Smart Farming Techniques | Telugu" 
+      allowfullscreen>
+    </iframe>
+
+    <iframe 
+      src="https://www.youtube.com/embed/6zucOr5OcIY" 
+      title="High Profit Cash Crops | Telangana" 
+      allowfullscreen>
+    </iframe>
+  </div> <!-- end of video-container -->
+</section>
+<section class="blog-section">
+  <h2 class="section-title">Smart Farming Blog Insights</h2>
+  <div class="blog-container">
+    <div class="featured-blog fade-in">
+      <img src="static/b1.jpeg" alt="Soil Nutrients Blog" />
+      <div class="blog-content">
+        <h3>Understanding Soil Nutrients: N, P, K</h3>
+        <p>
+          Explore how to identify and calculate essential soil nutrients like
+          Nitrogen, Phosphorus, and Potassium from natural indicators and test kits.
+        </p>
+        <a href="/blogs"><button class="read-more">Read More</button></a>
+      </div>
+    </div>
+
+    <div class="side-blogs scroll-area fade-in">
+      <div class="blog-card">
+        <img src="static/b2.jpg" alt="Temperature and Humidity" />
+        <div>
+          <h4>Natural Ways to Measure Temperature & Humidity</h4>
+        </div>
+      </div>
+      <div class="blog-card">
+        <img src="static/b3.jpeg" alt="pH and Rainfall" />
+        <div>
+          <h4>Calculating Soil pH and Rainfall Effects</h4>
+        </div>
+      </div>
+      <div class="blog-card">
+        <img src="static/b4.jpg" alt="Soil Fertility" />
+        <div>
+          <h4>How to Improve Soil Fertility</h4>
+        </div>
+      </div>
+      <div class="blog-card">
+        <img src="static/b5.png" alt="Crop Selection" />
+        <div>
+          <h4>Choosing the Right Crop for Your Land</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+   <a href="/blogs"><button class="view-all">View All Blogs</button></a>
+</section>
+<!-- Subscribe Section -->
+<section id="subscribe" class="subscribe">
+  <div class="subscribe-container">
+    <h2>Subscribe to our Newsletter</h2>
+    <p>Stay updated with the latest crop predictions, tips, and news.</p>
+    <p>Get the best farming advice delivered directly to your inbox.</p>
+    <form id="subscribe-form" action="#" method="POST">
+      <div class="form-group">
+        <div class="input-wrapper">
+          <span class="icon">&#128100;</span>
+          <input type="text" name="name" id="name" placeholder="*Name" required aria-label="Subscriber Name">
+        </div>
+        <div class="input-wrapper">
+          <span class="icon">&#9993;</span>
+          <input type="email" name="email" id="email" placeholder="*Email" required aria-label="Subscriber Email">
+        </div>
+      </div>
+      <button type="submit" class="submit-button">SUBMIT</button>
+    </form>
+  </div>
+</section>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // --- Counter Animation ---
+  const counters = document.querySelectorAll('.counter');
+
+  counters.forEach(counter => {
+    counter.innerText = '0';
+    const updateCounter = () => {
+      const target = +counter.getAttribute('data-target');
+      const current = +counter.innerText;
+      const increment = Math.ceil(target / 100); // Adjust speed
+
+      if (current < target) {
+        counter.innerText = Math.min(current + increment, target);
+        setTimeout(updateCounter, 20);
+      } else {
+        counter.innerText = target; // Ensure exact value
+      }
+    };
+    updateCounter();
+  });
+
+  // --- Carousel Setup ---
+  function setupCarousel(id) {
+    const carousel = document.getElementById(id);
+    if (!carousel) return;
+
+    const track = carousel.querySelector('.carousel-track');
+    const prevBtn = carousel.querySelector('.carousel-button.prev');
+    const nextBtn = carousel.querySelector('.carousel-button.next');
+    const items = track.children;
+
+    let currentIndex = 0;
+    const itemWidth = items[0].offsetWidth + 20;
+
+    prevBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex === 0) ? items.length - 1 : currentIndex - 1;
+      track.style.transform = `translateX(-${itemWidth * currentIndex}px)`;
+    });
+
+    nextBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex === items.length - 1) ? 0 : currentIndex + 1;
+      track.style.transform = `translateX(-${itemWidth * currentIndex}px)`;
+    });
+  }
+
+  setupCarousel('recommendation-carousel');
+
+  // --- Market Scroll Buttons ---
+  window.slideLeft = function () {
+    const marketGrid = document.getElementById('marketGrid');
+    if (marketGrid) {
+      marketGrid.scrollBy({ left: -300, behavior: 'smooth' });
+    }
+  };
+
+  window.slideRight = function () {
+    const marketGrid = document.getElementById('marketGrid');
+    if (marketGrid) {
+      marketGrid.scrollBy({ left: 300, behavior: 'smooth' });
+    }
+  };
+});
+document.getElementById('subscribe-form').addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+
+  if (name && email) {
+    alert(`Thank you, ${name}, for subscribing with ${email}!`);
+    this.reset();
+  } else {
+    alert("Please fill out all fields.");
+  }
+});
+
+</script>
+<footer class="footer">
+  <div class="footer-brand">
+      <h2>AgriGuru</h2>
+  </div>
+  <div class="footer-social">
+      <a href="https://www.facebook.com/your-page" target="_blank" title="Facebook">
+          <img src="static/face.png" alt="Facebook">
+      </a>
+      <a href="https://www.instagram.com/your-profile" target="_blank" title="Instagram">
+          <img src="static/insta.png" alt="Instagram">
+      </a>
+      <a href="https://twitter.com/your-handle" target="_blank" title="Twitter">
+          <img src="static/twitter.png" alt="Twitter">
+      </a>
+  </div>
+  <div class="footer-copyright">
+      © 2025 Crop Prediction. All Rights Reserved.
+  </div>
+</footer>
+
+</body>
+</html>

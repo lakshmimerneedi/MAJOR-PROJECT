@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Crop Prediction Result</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(145deg, #e6f0db, #c1d8ac);
+      min-height: 100vh;
+      padding-top: 150px; /* space for fixed navbar */
+      padding-bottom: 50px;
+      color: rgb(8, 8, 8);
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: white;
+      color: rgb(8, 8, 8);
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 700;
+      z-index: 1000;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    nav .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.5rem;
+    }
+
+    nav .logo img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 29px;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li a {
+      color: rgb(26, 25, 25);
+      font-weight: 700;
+      font-size: 17px;
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    nav ul li a::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: #e6f4dd;
+      z-index: -1;
+      transition: transform 0.3s ease;
+      transform: scale(0.8);
+      opacity: 0;
+      border-radius: 6px;
+    }
+
+    nav ul li a:hover {
+      color: #3f6e28;
+    }
+
+    nav ul li a:hover::before {
+      transform: scale(1);
+      opacity: 1;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Container and page styles */
+    .container {
+      background: white;
+      border-radius: 12px;
+      padding: 30px 40px;
+      max-width: 600px;
+      width: 100%;
+      box-shadow: 0 3px 8px rgba(46, 125, 50, 0.3);
+      text-align: center;
+      font-family: Arial, sans-serif;
+      color: #2e7d32;
+      margin: auto;
+    }
+
+    .message-box {
+      background-color: #a5d6a7;
+      padding: 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      color: white;
+      margin-bottom: 25px;
+    }
+h1 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #27632a;
+  animation: colorFade 5s ease-in-out infinite;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  padding-bottom: 8px;
+}
+
+h1::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background-color: #3f7d2a;
+  border-radius: 2px;
+  animation: underlineFade 5s ease-in-out infinite;
+}
+
+@keyframes underlineFade {
+  0%, 100% {
+    background-color: #3f7d2a;
+  }
+  50% {
+    background-color: #a5d6a7;
+  }
+}
+
+@keyframes colorFade {
+  0%, 100% {
+    color: #27632a;
+  }
+  50% {
+    color: #a5d6a7;
+  }
+}
+
+
+.crop-name {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 2.2rem;   /* smaller size */
+  margin-bottom: 25px;
+  color: #111111;
+
+  letter-spacing: 0.8px;
+}
+
+    img.crop-image {
+      width: 300px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      margin-bottom: 30px;
+    }
+
+    a.back-button {
+      display: inline-block;
+      text-decoration: none;
+      padding: 12px 30px;
+      border: 2px solid #2e7d32;
+      border-radius: 30px;
+      color: #2e7d32;
+      font-weight: 600;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    a.back-button:hover {
+      background-color: #2e7d32;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">
+        <img src="https://t4.ftcdn.net/jpg/01/07/44/57/360_F_107445710_dXV8BQNOVDFHndZapai0ILx3JwfdkJ4E.jpg" alt="AgriGuru Logo" />
+        <span>AgriGuru</span>
+      </div>
+      <ul>
+        <li><a href="/dashboard">Home</a></li>
+        <li><a href="/predict">Predict</a></li>
+        <li><a href="/result">Result</a></li>
+        <li><a href="/history">History</a></li>
+        <li><a href="/blogs">Blogs</a></li>
+        <li><a href="/logout">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1>Crop Prediction Result</h1>
+
+    {% if predicted_crop == "rice" %}
+      <h2 class="crop-name">Rice</h2>
+      <div class="image-container"><img src="static/rice.jpg" alt="Rice" class="crop-image"/></div>
+    {% elif predicted_crop == "maize" %}
+      <h2 class="crop-name">Maize</h2>
+      <div class="image-container"><img src="static/maize.jpeg" alt="Maize" class="crop-image"/></div>
+    {% elif predicted_crop == "chickpea" %}
+      <h2 class="crop-name">Chickpea</h2>
+      <div class="image-container"><img src="static/chickpea.jpg" alt="Chickpea" class="crop-image"/></div>
+    {% elif predicted_crop == "kidneybeans" %}
+      <h2 class="crop-name">Kidney Beans</h2>
+      <div class="image-container"><img src="static/kidneybeans.jpg" alt="Kidney Beans" class="crop-image"/></div>
+    {% elif predicted_crop == "pigeonpeas" %}
+      <h2 class="crop-name">Pigeon Peas</h2>
+      <div class="image-container"><img src="static/pomegranate.avif" alt="Pigeon Peas" class="crop-image"/></div>
+    {% elif predicted_crop == "mothbeans" %}
+      <h2 class="crop-name">Moth Beans</h2>
+      <div class="image-container"><img src="static/mothbeans.jpg" alt="Moth Beans" class="crop-image"/></div>
+    {% elif predicted_crop == "mungbean" %}
+      <h2 class="crop-name">Mung Bean</h2>
+      <div class="image-container"><img src="static/mungbean.jpg" alt="Mung Bean" class="crop-image"/></div>
+    {% elif predicted_crop == "blackgram" %}
+      <h2 class="crop-name">Black Gram</h2>
+      <div class="image-container"><img src="static/blackgram.webp" alt="Black Gram" class="crop-image"/></div>
+    {% elif predicted_crop == "lentil" %}
+      <h2 class="crop-name">Lentil</h2>
+      <div class="image-container"><img src="static/lentil.jpg" alt="Lentil" class="crop-image"/></div>
+    {% elif predicted_crop == "pomegranate" %}
+      <h2 class="crop-name">Pomegranate</h2>
+      <div class="image-container"><img src="static/pomegranate.avif" alt="Pomegranate" class="crop-image"/></div>
+    {% elif predicted_crop == "banana" %}
+      <h2 class="crop-name">Banana</h2>
+      <div class="image-container"><img src="static/banana1.jpg" alt="Banana" class="crop-image"/></div>
+    {% elif predicted_crop == "mango" %}
+      <h2 class="crop-name">Mango</h2>
+      <div class="image-container"><img src="static/mango.jpeg" alt="Mango" class="crop-image"/></div>
+    {% elif predicted_crop == "grapes" %}
+      <h2 class="crop-name">Grapes</h2>
+      <div class="image-container"><img src="static/grapes.jpg" alt="Grapes" class="crop-image"/></div>
+    {% elif predicted_crop == "watermelon" %}
+      <h2 class="crop-name">Watermelon</h2>
+      <div class="image-container"><img src="static/watermelon.jpg" alt="Watermelon" class="crop-image"/></div>
+    {% elif predicted_crop == "muskmelon" %}
+      <h2 class="crop-name">Muskmelon</h2>
+      <div class="image-container"><img src="static/muskmelon.webp" alt="Muskmelon" class="crop-image"/></div>
+    {% elif predicted_crop == "apple" %}
+      <h2 class="crop-name">Apple</h2>
+      <div class="image-container"><img src="static/apple.webp" alt="Apple" class="crop-image"/></div>
+    {% elif predicted_crop == "orange" %}
+      <h2 class="crop-name">Orange</h2>
+      <div class="image-container"><img src="static/orange.jpeg" alt="Orange" class="crop-image"/></div>
+    {% elif predicted_crop == "papaya" %}
+      <h2 class="crop-name">Papaya</h2>
+      <div class="image-container"><img src="static/papaya.jpg" alt="Papaya" class="crop-image"/></div>
+    {% elif predicted_crop == "coconut" %}
+      <h2 class="crop-name">Coconut</h2>
+      <div class="image-container"><img src="static/coconut.jpg" alt="Coconut" class="crop-image"/></div>
+    {% elif predicted_crop == "cotton" %}
+      <h2 class="crop-name">Cotton</h2>
+      <div class="image-container"><img src="static/cotton.jpeg" alt="Cotton" class="crop-image"/></div>
+    {% elif predicted_crop == "jute" %}
+      <h2 class="crop-name">Jute</h2>
+      <div class="image-container"><img src="static/jute.webp" alt="Jute" class="crop-image"/></div>
+    {% elif predicted_crop == "coffee" %}
+      <h2 class="crop-name">Coffee</h2>
+      <div class="image-container"><img src="static/coffee.jpg" alt="Coffee" class="crop-image"/></div>
+    {% else %}
+      <h2 class="crop-name">No prediction available</h2>
+    {% endif %}
+
+    <a href="/dashboard" class="back-button">⟵ Back to Home</a>
+  </div>
+</body>
+</html>

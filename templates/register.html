@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Crop Recommendation - Register</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    /* Your existing styles unchanged */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      height: 100vh;
+      background: #e8f5e9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      height: 90vh;
+      display: flex;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 0 25px rgba(0,0,0,0.1);
+    }
+
+    .left {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background: linear-gradient(to bottom, #2e7d32 50%, #fff 50%);
+    }
+
+    .quote-top {
+      padding: 30px;
+      font-size: 1.7rem;
+      font-weight: bold;
+      color: #e8f5e9;
+      text-align: center;
+      font-family: 'Georgia', serif;
+      line-height: 1.4;
+      background-color: #2e7d32;
+      animation: fadeInDown 1s ease-in-out;
+    }
+
+    .image-area {
+      flex: 1;
+      background: url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=800&q=80') center/cover no-repeat;
+    }
+
+    .right {
+      flex: 1;
+      background: #ffffff;
+      padding: 40px;
+      overflow-y: auto;
+    }
+
+    .right h2 {
+      font-size: 2rem;
+      color: #2e7d32;
+      margin-bottom: 10px;
+      animation: fadeInUp 1s ease-in-out;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #2e7d32;
+    }
+
+    .form-message {
+      font-size: 0.9rem;
+      margin-top: 5px;
+      color: red;
+      display: none;
+    }
+
+    .success {
+      color: green;
+    }
+
+    .password-requirements {
+      display: none;
+      font-size: 0.85rem;
+      padding-left: 10px;
+    }
+
+    .password-requirements span {
+      display: block;
+    }
+
+    .google-btn {
+      background: #fff;
+      color: #000;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      width: 100%;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      margin-top: 20px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .google-btn img {
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+    }
+
+    .google-btn:hover {
+      background-color: #f5f5f5;
+    }
+
+    .already {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 0.95rem;
+    }
+
+    .already a {
+      color: #2e7d32;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      padding: 12px 0;
+      background: linear-gradient(135deg, #2e7d32, #66bb6a);
+      border: none;
+      border-radius: 10px;
+      color: white;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(46, 125, 50, 0.4);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    button[type="submit"]::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.2);
+      z-index: 0;
+      transition: all 0.4s ease;
+    }
+
+    button[type="submit"]:hover::before {
+      left: 100%;
+    }
+
+    button[type="submit"]:hover {
+      transform: scale(1.03);
+      box-shadow: 0 6px 18px rgba(46, 125, 50, 0.5);
+    }
+
+    button[type="submit"]:active {
+      transform: scale(0.97);
+    }
+
+    button[disabled] {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    @keyframes fadeInUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes fadeInDown {
+      from { transform: translateY(-20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+
+<body>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div style="position: fixed; top: 10px; left: 50%; transform: translateX(-50%); background-color: #4caf50; color: white; padding: 10px 20px; border-radius: 5px; z-index: 9999;">
+      {{ messages[0] }}
+    </div>
+    <script>
+      setTimeout(() => {
+        document.querySelector('[style*="position: fixed"]').style.display = 'none';
+      }, 3000);
+    </script>
+  {% endif %}
+{% endwith %}
+
+  <div class="container">
+    <div class="left">
+      <div class="quote-top">
+        "Grow your future with smart crop recommendations"
+      </div>
+      <div class="image-area"></div>
+    </div>
+    <div class="right">
+      <h2>Register for Crop Recommendation</h2>
+      <form id="registerForm" method="POST" action="/register" novalidate>
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" name="fname" id="fname" required oninput="validateName(this)">
+          <div class="form-message" id="fnameMsg">Only letters allowed and cannot be empty.</div>
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" name="surname" id="surname" required oninput="validateName(this)">
+          <div class="form-message" id="surnameMsg">Only letters allowed and cannot be empty.</div>
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="text" name="phone" id="phone" required oninput="validatePhone(this)">
+          <div class="form-message" id="phoneMsg">Only digits allowed and cannot be empty.</div>
+        </div>
+        <div class="form-group">
+          <label>Age</label>
+          <input type="number" name="age" id="age" min="18" max="100" required oninput="validateAge(this)">
+          <div class="form-message" id="ageMsg">Age must be between 18 and 100.</div>
+        </div>
+        <div class="form-group">
+          <label>Experience (in years)</label>
+          <input type="number" name="exp" id="exp" min="0" required oninput="validateExp(this)">
+          <div class="form-message" id="expMsg">Experience cannot be negative or empty.</div>
+        </div>
+        <div class="form-group">
+          <label>Acres of Land</label>
+          <input type="number" name="acres" id="acres" min="0.01" step="0.01" required oninput="validateAcres(this)">
+          <div class="form-message" id="acresMsg">Acres must be greater than 0.</div>
+        </div>
+        <div class="form-group">
+          <label>Last Crop Grown</label>
+          <input type="text" name="crop" id="crop" required oninput="validateCrop(this)">
+          <div class="form-message" id="cropMsg">This field cannot be empty.</div>
+        </div>
+        <div class="form-group">
+          <label>Location (optional)</label>
+          <input type="text" name="location" id="location" placeholder="City or Region">
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" name="email" id="email" required oninput="validateEmail(this)">
+          <div class="form-message" id="emailMsg">Please enter a valid email address.</div>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" name="password" id="password" required oninput="checkPassword(this); validateForm()">
+          <div class="password-requirements" id="passReq">
+            <span id="len" class="req">❌ At least 8 characters</span>
+            <span id="cap" class="req">❌ One uppercase letter</span>
+            <span id="num" class="req">❌ One number</span>
+            <span id="spec" class="req">❌ One special character</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Confirm Password</label>
+          <input type="password" id="cpassword" required oninput="matchPasswords(); validateForm()">
+          <div class="form-message" id="confirmMsg"></div>
+        </div>
+        <button type="submit" id="submitBtn" disabled>Register</button>
+      <div style="text-align: center; margin: 15px 0; font-weight: 600; color: #555;">or</div>
+        <!-- Google OAuth button -->
+        <button type="button" class="google-btn" onclick="window.location.href='/login/google'">
+          <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google logo">
+          Continue with Google
+        </button>
+
+        <div class="already">Already registered? <a href="/login">Login here</a></div>
+      </form>
+    </div>
+  </div>
+
+<script>
+  // Show error on input; hide on blur regardless of validity
+  function addValidation(input, validateFn, msgId) {
+    const msgEl = document.getElementById(msgId);
+
+    input.addEventListener('input', () => {
+      if (!validateFn(input)) {
+        msgEl.style.display = 'block';
+        input.style.borderColor = 'red';
+      } else {
+        msgEl.style.display = 'none';
+        input.style.borderColor = '#ccc';
+      }
+    });
+
+    input.addEventListener('blur', () => {
+      // On blur hide error and reset border regardless of validity
+      msgEl.style.display = 'none';
+      input.style.borderColor = '#ccc';
+    });
+  }
+
+  function validateName(input) {
+    const val = input.value.trim();
+    const regex = /^[A-Za-z]+$/;
+    return val && regex.test(val);
+  }
+
+  function validatePhone(input) {
+    const val = input.value.trim();
+    const regex = /^[0-9]+$/;
+    return val && regex.test(val);
+  }
+
+  function validateAge(input) {
+    const val = Number(input.value);
+    return val && val >= 18 && val <= 100;
+  }
+
+  function validateExp(input) {
+    const val = Number(input.value);
+    return val !== '' && !isNaN(val) && val >= 0;
+  }
+
+  function validateAcres(input) {
+    const val = Number(input.value);
+    return val > 0 && !isNaN(val);
+  }
+
+  function validateCrop(input) {
+    const val = input.value.trim();
+    return val.length > 0;
+  }
+
+  function validateEmail(input) {
+    const val = input.value.trim();
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(val);
+  }
+
+  // Password validation is more complex, so handle separately
+  function checkPassword(input) {
+    const pass = input.value;
+    const reqs = {
+      len: document.getElementById('len'),
+      cap: document.getElementById('cap'),
+      num: document.getElementById('num'),
+      spec: document.getElementById('spec')
+    };
+    const passReq = document.getElementById('passReq');
+
+    passReq.style.display = pass.length > 0 ? 'block' : 'none';
+
+    // Validate length
+    reqs.len.textContent = pass.length >= 8 ? "✅ At least 8 characters" : "❌ At least 8 characters";
+    reqs.len.style.color = pass.length >= 8 ? "green" : "red";
+
+    // Uppercase letter
+    const capOk = /[A-Z]/.test(pass);
+    reqs.cap.textContent = capOk ? "✅ One uppercase letter" : "❌ One uppercase letter";
+    reqs.cap.style.color = capOk ? "green" : "red";
+
+    // Number
+    const numOk = /\d/.test(pass);
+    reqs.num.textContent = numOk ? "✅ One number" : "❌ One number";
+    reqs.num.style.color = numOk ? "green" : "red";
+
+    // Special character
+    const specOk = /[^A-Za-z0-9]/.test(pass);
+    reqs.spec.textContent = specOk ? "✅ One special character" : "❌ One special character";
+    reqs.spec.style.color = specOk ? "green" : "red";
+  }
+
+  function passwordIsValid() {
+    const pass = document.getElementById('password').value;
+    return (
+      pass.length >= 8 &&
+      /[A-Z]/.test(pass) &&
+      /\d/.test(pass) &&
+      /[^A-Za-z0-9]/.test(pass)
+    );
+  }
+
+  function matchPasswords() {
+    const pass = document.getElementById('password').value;
+    const cpass = document.getElementById('cpassword').value;
+    const msg = document.getElementById('confirmMsg');
+    if (cpass.length === 0) {
+      msg.style.display = 'none';
+      return false;
+    }
+    if (pass === cpass) {
+      msg.textContent = "Passwords match";
+      msg.style.color = "green";
+      msg.style.display = "block";
+      return true;
+    } else {
+      msg.textContent = "Passwords do not match";
+      msg.style.color = "red";
+      msg.style.display = "block";
+      return false;
+    }
+  }
+
+  // Validate form for submit button enabling
+  function validateForm() {
+    const valid =
+      validateName(document.getElementById('fname')) &&
+      validateName(document.getElementById('surname')) &&
+      validatePhone(document.getElementById('phone')) &&
+      validateAge(document.getElementById('age')) &&
+      validateExp(document.getElementById('exp')) &&
+      validateAcres(document.getElementById('acres')) &&
+      validateCrop(document.getElementById('crop')) &&
+      validateEmail(document.getElementById('email')) &&
+      passwordIsValid() &&
+      matchPasswords();
+
+    document.getElementById('submitBtn').disabled = !valid;
+  }
+
+  window.onload = function() {
+    addValidation(document.getElementById('fname'), validateName, 'fnameMsg');
+    addValidation(document.getElementById('surname'), validateName, 'surnameMsg');
+    addValidation(document.getElementById('phone'), validatePhone, 'phoneMsg');
+    addValidation(document.getElementById('age'), validateAge, 'ageMsg');
+    addValidation(document.getElementById('exp'), validateExp, 'expMsg');
+    addValidation(document.getElementById('acres'), validateAcres, 'acresMsg');
+    addValidation(document.getElementById('crop'), validateCrop, 'cropMsg');
+    addValidation(document.getElementById('email'), validateEmail, 'emailMsg');
+
+    // Password input
+    const passInput = document.getElementById('password');
+    passInput.addEventListener('input', () => {
+      checkPassword(passInput);
+      validateForm();
+    });
+    passInput.addEventListener('blur', () => {
+      document.getElementById('passReq').style.display = 'none';
+      passInput.style.borderColor = '#ccc';
+    });
+
+    // Confirm password input
+    const cpassInput = document.getElementById('cpassword');
+    cpassInput.addEventListener('input', () => {
+      matchPasswords();
+      validateForm();
+    });
+    cpassInput.addEventListener('blur', () => {
+      document.getElementById('confirmMsg').style.display = 'none';
+      cpassInput.style.borderColor = '#ccc';
+    });
+
+    // Validate form initially and on any input
+    const inputs = document.querySelectorAll('#registerForm input');
+    inputs.forEach(input => {
+      input.addEventListener('input', validateForm);
+    });
+  };
+
+  // Prevent submit if invalid
+  document.getElementById('registerForm').addEventListener('submit', function(e){
+    if (document.getElementById('submitBtn').disabled) {
+      e.preventDefault();
+      validateForm();
+    }
+  });
+</script>
+
+</body>
+</html>
